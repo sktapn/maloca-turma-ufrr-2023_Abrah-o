@@ -1,6 +1,5 @@
-# Título do Tutorial
-
-**Descrição:** Breve introdução ao tutorial, explicando o objetivo do projeto, as habilidades que serão adquiridas e o público-alvo. Ex.: "Neste tutorial, vamos desenvolver um sistema de monitoramento de sinais vitais usando uma ESP32 com sensores de temperatura e frequência cardíaca."
+# Montagem de Circuito no TinkerCAD
+**Descrição:** Neste tutorial, vamos aprender a montar um circuito no TinkerCAD para ligar e desligar LEDs. O objetivo é proporcionar uma base sólida em simulação de circuitos e componentes eletrônicos. Durante o processo, você adquirirá habilidades em simulação de circuitos e programação básica, ideal para iniciantes em eletrônica e programação que desejam explorar projetos práticos.
 
 ---
 
@@ -8,136 +7,129 @@
 
 1. [Introdução](#introdução)
 2. [Requisitos](#requisitos)
-3. [Configuração do Ambiente](#configuração-do-ambiente)
+3. [Configuração do Ambiente no TinkerCAD](#configuração-do-ambiente-no-tinkercad)
 4. [Montagem do Circuito](#montagem-do-circuito)
-5. [Programação](#programação)
+5. [Configuração do Código](#configuração-do-código)
 6. [Teste e Validação](#teste-e-validação)
-7. [Expansões e Melhorias](#expansões-e-melhorias)
-8. [Referências](#referências)
+7. [Referências](#referências)
 
 ---
 
 ## Introdução
 
-Explique o propósito do projeto em um contexto de saúde. Por exemplo, o monitoramento de sinais vitais em tempo real para pacientes, ou um sistema de alarme para quedas. Inclua uma breve visão sobre como o projeto se integra ao ambiente IoT.
+Neste tutorial, vamos aprender a criar um circuito básico para ligar e desligar LEDs usando o TinkerCAD. Este projeto é ideal para iniciantes em eletrônica, proporcionando uma base sólida no entendimento de circuitos e componentes eletrônicos.
 
 ---
 
 ## Requisitos
 
 ### Hardware
+- **Placa**: Arduino
+- **Atuadores**: LEDs
+- **Outros componentes**: Jumpers, resistores
 
-- **Placa**: Arduino, ESP32, Raspberry Pi
-- **Sensores**: Detalhe cada sensor, como sensores de temperatura, oxímetro, acelerômetro, entre outros
-- **Atuadores**: Como LEDs, buzzer, relés, etc.
-- **Outros componentes**: Jumpers, resistores, display LCD, etc.
 
 ### Software
 
-- **Linguagens**: C/C++ para Arduino e ESP32, Python para Raspberry Pi
-- **IDE**: Arduino IDE, Thonny para Raspberry Pi, VS Code (opcional)
-- **Bibliotecas**: Liste as bibliotecas necessárias, como `Adafruit_Sensor`, `DHT`, entre outras.
-
+- **Linguagens**: C/C++ para Arduino
+- **IDE**: TinkerCAD (focado para simulação e montagem de circuitos)
+- **Bibliotecas**: Não aplicável para simulação básica no TinkerCAD.
 ---
 
-## Configuração do Ambiente
+## Configuração do Ambiente no TinkerCAD
 
-### Passo 1: Instalação do Software
+### Passo 1: Configuração Inicial
 
-- **Arduino IDE**: Instruções para instalar e configurar a IDE do Arduino para ESP32/Arduino.
-- **Thonny Python**: Configuração do Thonny para programar em Python no Raspberry Pi.
-- **Bibliotecas**: Como instalar as bibliotecas necessárias. Exemplo:
+#### TinkerCAD: Configuração da Plataforma
 
-```bash
-# Instalar bibliotecas do Python
-pip install Adafruit_DHT
-```
+1. **Criação da Conta**:
+   - Acesse [TinkerCAD](https://www.tinkercad.com/) e crie uma conta gratuita.
+   - Após o login, selecione "Circuits" no menu principal.
 
-### Passo 2: Configuração das Placas
-
-- **Arduino/ESP32**: Passos para configurar a placa e selecionar a porta correta na IDE.
-- **Raspberry Pi**: Configuração do GPIO para comunicação com os sensores.
-
----
+2. **Configuração do Projeto**:
+   - Clique em "Create new Circuit".
+   - Nomeie o seu projeto e selecione "Arduino" como sua placa principal.
 
 ## Montagem do Circuito
 
-Insira um diagrama do circuito, ou descreva as conexões principais, incluindo onde cada sensor e atuador deve ser conectado. 
+<div>
+  <img align="center" height "180em" src="https://github.com/user-attachments/assets/461c4d0a-b90e-4bd0-ad75-44a6654f3a04" width="500"/>
+<div>
 
-> **Nota**: Use imagens ou diagramas para auxiliar a compreensão.
 
----
+#### Arduino no TinkerCAD
 
-## Programação
+1. **Adicionar Componentes**:
+   - Arraste e solte os componentes necessários, como LED, resistores e jumpers, para a área de trabalho.
+   - Conecte o LED ao pino digital 13 do Arduino, passando por um resistor de 220 ohms.
 
-### Passo 1: Configuração dos Sensores e Atuadores
+## Configuração do Código**:
+   - No TinkerCAD, clique em "Code" e selecione "Blocks + Text".
+   - Utilize o código exemplo abaixo para ligar e desligar o LED:
+     ```cpp
+     const int buttonPin = 2;   
+     const int ledPin =  13;
+     void setup() {
+        // put your setup code here, to run once:
+        pinMode(buttonPin,INPUT);
+        pinMode(ledPin, OUTPUT);
 
-Forneça o código para a configuração dos sensores. Por exemplo, para medir temperatura e batimentos cardíacos:
+        }
 
-**Exemplo em C para ESP32:**
+        void loop() {
+        // put your main code here, to run repeatedly:
+        int pushbutton = digitalRead(buttonPin);
 
-```cpp
-#include <DHT.h>
+        if(pushbutton==HIGH)
+            {
+            digitalWrite(13,HIGH);
+    
+             }
+        else
+            {
+            digitalWrite(13,LOW);
+            }
+  
+        }
 
-#define DHTPIN 2     // Pino do sensor DHT
-#define DHTTYPE DHT11 
+     ```
 
-DHT dht(DHTPIN, DHTTYPE);
-
-void setup() {
-  Serial.begin(9600);
-  dht.begin();
-}
-
-void loop() {
-  float temp = dht.readTemperature();
-  Serial.println(temp);
-  delay(2000);
-}
-```
-
-**Exemplo em Python para Raspberry Pi:**
-
-```python
-import Adafruit_DHT
-
-sensor = Adafruit_DHT.DHT11
-pin = 4  # Pino GPIO
-
-humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-print(f"Temperatura: {temperature}ºC")
-```
-
-### Passo 2: Processamento e Lógica de Alerta
-
-Adicione a lógica para processar os dados e acionar atuadores, como LEDs ou buzzer, caso as leituras excedam um determinado limite.
-
----
+3. **Simulação**:
+   - Clique em "Start Simulation" para testar seu circuito.
+   - Observe o LED piscando conforme o código.
 
 ## Teste e Validação
 
-Descreva os testes para validar cada parte do projeto:
+### Testando Atuadores
 
-1. **Testando Sensores**: Verifique se as leituras são consistentes e corretas.
-2. **Validação dos Atuadores**: Confirme que os atuadores funcionam corretamente.
-3. **Monitoramento em Tempo Real**: Teste o sistema completo em condições simuladas para garantir que funciona conforme o esperado.
+1. **Verificação Inicial**:
+   - Assegure-se de que todas as conexões estejam corretas no TinkerCAD.
+   - Inicie a simulação no TinkerCAD e observe se o LED responde ao estado do botão conforme esperado.
 
----
+2. **Consistência das Leituras**:
+   - Pressione e solte o botão várias vezes para garantir que o LED liga e desliga corretamente a cada ação.
+   - Monitore a estabilidade da simulação para detectar quaisquer falhas intermitentes.
 
-## Expansões e Melhorias
+### Validação dos Atuadores
 
-Sugestões para melhorar o projeto, como:
+1. **Funcionamento Correto**:
+   - Verifique se o LED acende e apaga de acordo com a lógica programada no código.
+   - Modifique o código para testar diferentes padrões de piscar e confirmar a resposta correta do LED.
 
-- Adicionar comunicação Wi-Fi (ESP32) para enviar dados para uma nuvem.
-- Integrar um banco de dados para registro das leituras.
-- Conectar-se a uma aplicação móvel para visualização remota.
+### Monitoramento em Tempo Real
 
----
+1. **Simulação Completa**:
+   - Execute a simulação por um período prolongado para garantir que o circuito funcione de forma estável e contínua.
+   - Ajuste a lógica conforme necessário para aprimorar a resposta e desempenho do circuito.
 
 ## Referências
 
-Liste todas as referências e links úteis para guias, bibliotecas, e materiais adicionais que ajudem a complementar o tutorial.
+- **Guia TinkerCAD**: [TinkerCAD Circuits](https://www.tinkercad.com/circuits)
+- **Bibliotecas e IDEs**:
+  - [Arduino IDE](https://www.arduino.cc/en/software)
+  - [TinkerCAD Tutorials](https://blog.tinkercad.com/tag/circuit-tutorials)
+- **Materiais Adicionais**:
+  - [Documentação ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/)
+  - [Tutoriais de Programação em C/C++](https://www.learn-c.org/)
+  - [Tutorial de Flutter](https://flutter.dev/docs/get-started/codelab)
 
----
-
-Espero que esse modelo ajude a organizar o conteúdo e fornecer uma estrutura clara e completa para tutoriais de IoT no contexto da saúde.
