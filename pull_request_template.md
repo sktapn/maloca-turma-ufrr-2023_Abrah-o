@@ -3,7 +3,7 @@
 ## Descrição do Pull Request
 
 ### O que foi implementado:
-Foi desenvolvido um sistema de monitoramento de temperatura para quartos de pacientes utilizando uma ESP32 e sensores de temperatura. O sistema inclui LEDs para indicar se a temperatura está dentro da faixa segura (verde), ligeiramente elevada (amarelo) ou muito alta (vermelho).
+Foi desenvolvido um Sistema de Controle de Temperatura para Ambientes de pacientes utilizando uma ESP32 e sensores de temperatura. O sistema inclui LEDs para indicar se a temperatura está dentro da faixa segura (verde), ligeiramente elevada (amarelo) ou muito alta (vermelho).
 
 
 ### Contexto e Motivação:
