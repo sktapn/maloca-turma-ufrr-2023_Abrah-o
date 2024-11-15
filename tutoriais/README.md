@@ -191,4 +191,4 @@ Sugestões para melhorar o projeto, como:
 
 ---
 
-
+Caso os LEDs não acendam, é importante revisar as conexões e garantir que os LEDs estão corretamente polarizados. Se a temperatura exibida estiver incorreta, verifique a conexão do potenciômetro ao pino VP (36). Caso os LEDs não respondam às mudanças de temperatura, ajuste as faixas no código e o tempo de delay para otimizar a leitura e resposta do sistema.
