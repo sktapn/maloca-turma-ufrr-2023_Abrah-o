@@ -3,64 +3,59 @@
 ## Descrição do Pull Request
 
 ### O que foi implementado:
-<!-- Descreva brevemente as alterações propostas neste Pull Request, incluindo quais funcionalidades, correções ou melhorias foram introduzidas. -->
+Foi desenvolvido um sistema de monitoramento de temperatura para quartos de pacientes utilizando uma ESP32 e sensores de temperatura. O sistema inclui LEDs para indicar se a temperatura está dentro da faixa segura (verde), ligeiramente elevada (amarelo) ou muito alta (vermelho).
 
-- 
 
 ### Contexto e Motivação:
-<!-- Explique o problema ou a necessidade que levou a esta implementação, especialmente considerando o contexto de IoT na área da saúde. -->
+O objetivo deste projeto é garantir que os quartos de pacientes mantenham uma temperatura adequada, especialmente para pacientes vulneráveis, como recém-nascidos e idosos. O sistema permite a monitorização em tempo real e intervenções rápidas em caso de desvios de temperatura.
 
-- 
 
 ## Testes Realizados
 
 ### Descrição dos Testes:
-<!-- Descreva os testes realizados, especialmente aqueles envolvendo sensores e atuadores, e as configurações utilizadas para verificar a funcionalidade. -->
+- Testando Sensores: Verificação do funcionamento do potenciômetro simulando diferentes temperaturas. As leituras de voltagem e temperatura foram monitoradas no terminal serial.
+- Validação dos Atuadores: Teste dos LEDs para garantir que acendem corretamente com base na temperatura simulada.
+- Monitoramento em Tempo Real: Simulação de diferentes temperaturas e observação da resposta do sistema em tempo real.
 
-- 
 
 ### Resultados dos Testes:
-<!-- Indique os resultados observados ao realizar os testes em placas como Arduino, Raspberry Pi e ESP32. -->
+- Sensores: Funcionamento correto do potenciômetro, com leituras precisas de voltagem e temperatura.
+- Atuadores: LEDs responderam conforme esperado, indicando as faixas de temperatura correta.
+- Monitoramento: Sistema respondeu rapidamente às mudanças de temperatura, com exibição precisa dos dados no terminal serial.
 
-- 
 
 ## Checklist
 
-- [ ] Código atende às normas do projeto e foi formatado de acordo com as diretrizes.
-- [ ] Código foi testado e validado em ambiente de desenvolvimento com hardware real (Arduino, Raspberry Pi, ESP32) ou simulação (tinkercad).
-- [ ] Documentação atualizada para refletir as mudanças realizadas.
-- [ ] Código escrito e comentado em **C** ou **Python** de acordo com os padrões do projeto.
-- [ ] Testes com sensores e atuadores específicos incluídos e detalhados na descrição dos testes.
+- [x] Código atende às normas do projeto e foi formatado de acordo com as diretrizes.
+- [x] Código foi testado e validado em ambiente de desenvolvimento com hardware real (Arduino, Raspberry Pi, ESP32) ou simulação (tinkercad).
+- [x] Documentação atualizada para refletir as mudanças realizadas.
+- [x] Código escrito e comentado em **C** ou **Python** de acordo com os padrões do projeto.
+- [x] Testes com sensores e atuadores específicos incluídos e detalhados na descrição dos testes.
 
 ## Tipo de Mudança
 
 - [ ] Correção de bug
-- [ ] Nova funcionalidade
+- [x] Nova funcionalidade
 - [ ] Alteração de funcionalidade existente
-- [ ] Documentação
+- [x] Documentação
 
 ## Informações Adicionais
 
 ### Hardware Utilizado:
-<!-- Liste o hardware específico (ex: Arduino Uno, ESP32) e os sensores ou atuadores associados a este PR. -->
+ESP32
+Potenciômetro
+LEDs (Verde, Amarelo e Vermelho)
+Jumpers, resistores e Protoboard
 
-- 
 
 ### Simulação Utilizado:
-<!-- Liste os componentes específico (ex: Arduino Uno, ESP32) e os sensores ou atuadores associados a este PR, bem como, o link da simulação. -->
-
--
+- Wokwi
 
 ### Observações:
-<!-- Detalhes adicionais ou considerações que possam ajudar na revisão do código. -->
-
-- 
+N/A
 
 ## Issue Relacionada
 
-<!-- Se aplicável, mencione a issue relacionada a este PR (ex: `Closes #123`) -->
 Closes #
 
 ---
-
-**Nota:** Certifique-se de que o código e as descrições estejam claros e detalhados o suficiente para uma revisão eficaz.
