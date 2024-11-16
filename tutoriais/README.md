@@ -1,6 +1,6 @@
-# Sistema de Controle de Temperatura para Ambientes
+# Sistema de Monitoramento de IMC com Sensores de Peso e Altura
 
-**Descrição:** Neste tutorial, vamos desenvolver um sistema de monitoramento para quartos de pacientes usando uma ESP32 com sensores de temperatura. O sistema mantém a temperatura dos quartos dentro de um intervalo seguro, alertando os profissionais de saúde caso a temperatura fique muito alta (LED vermelho) ou muito baixa (LED verde). Este projeto é particularmente útil para pacientes vulneráveis, como recém-nascidos, idosos ou pessoas com condições de saúde sensíveis à temperatura.
+**Descrição:** Neste projeto, vamos criar um sistema de monitoramento de saúde utilizando um sensor de força para medir o peso de um indivíduo e um sensor de distância para calcular sua altura, ambos conectados a um microcontrolador. O sistema também calculará o Índice de Massa Corporal (IMC) com base nos valores de peso e altura, e exibirá as informações no display LCD. Além disso, o sistema indicará a faixa do IMC através de LEDs, ajudando na avaliação de condições como baixo peso, sobrepeso e obesidade. Esse projeto pode ser útil em clínicas, academias ou até mesmo para uso pessoal, promovendo o acompanhamento da saúde de forma prática e visual.
 
 ---
 
@@ -19,7 +19,7 @@
 
 ## Introdução
 
-Este projeto visa monitorar a temperatura de quartos de pacientes, garantindo um ambiente seguro e confortável, essencial para pacientes vulneráveis como recém-nascidos e idosos. Utilizando a ESP32 com sensores de temperatura, o sistema envia alertas visuais para desvio de temperatura (LEDs), integrando-se ao ambiente IoT para permitir o monitoramento remoto e em tempo real por profissionais de saúde. Esta integração facilita intervenções rápidas e eficazes, melhorando o cuidado e a segurança dos pacientes..
+Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de Massa Corporal (IMC) utilizando sensores de peso e altura. O sistema exibe os resultados em um display LCD e utiliza LEDs para indicar diferentes faixas de IMC, como baixo peso, peso normal e obesidade. A proposta é fornecer uma ferramenta prática e acessível para o acompanhamento da saúde física.
 
 ---
 
@@ -27,168 +27,226 @@ Este projeto visa monitorar a temperatura de quartos de pacientes, garantindo um
 
 ### Hardware
 
-- **Placa**: ESP32
-- **Sensores**: Substituto usamos o potenciômetro.
-- **Atuadores**: LEDs (Verde, Laranja e Vermelho).
-- **Outros componentes**: Jumpers, resistores e Protoboard.
+- **Placa**: Arduino Uno.
+- **Sensores**: Sensor de força (para medir o peso) e sensor de distância (ultrassônico) para medir a altura.
+- **Atuadores**: 5 LEDs de cores diferentes (para indicar diferentes faixas de IMC).
+- **Display**: LCD 16x2 com interface I2C.
+- **Outros componentes**: Protoboard, 6 resistores de 220 Ω, jumpers.
 
 ### Software
 
-- **Linguagens**: C/C++ para ESP32.
-- **IDE**: Wokwi.
-- **Bibliotecas**: Biblioteca padrão Arduino.h.
+- **Linguagens**: C/C++ para programação do Arduino..
+- **IDE**: Arduino IDE e Tinkercad.
+- **Bibliotecas**: Wire.h e Adafruit_LiquidCrystal.h para controle do LCD e comunicação com os sensores.
 
 ---
 
 ## Configuração do Ambiente
 
-### Passo 1: Acessando e Configurando
+### Passo 1: Instalação do Software
+ 
+- **Arduino IDE:** Faça o download e instale o Arduino IDE acessando o site https://www.arduino.cc/en/software.
 
-- **Wokwi**: 
-  1. Acesse o Wokwi no seu navegador https://wokwi.com/
-  2. Crie um novo projeto e selecione a placa ESP32.
-     
-![imagem alt]( https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/wokwi.png?raw=true)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/download%20arduino.png?raw=true)
 
 ### Passo 2: Configuração das Placas
-
-- **Arduino/ESP32**: Como vamos fazer a simulação online, não será necessário realizar configurações específicas na placa.
-
+- **Configuração no Arduino:**
+1. Conecte a placa Arduino ao computador utilizando o cabo USB;
+2. Na IDE do Arduino, clique em "Select other board and port" (Selecionar outra placa e porta);
+3. Escolha a opção "Arduino Mega or Mega 2560";
+4. Por último, selecione a porta correta na IDE do Arduino.
+     
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/arduino.png?raw=true)
 ---
 
 ## Montagem do Circuito
 
-### **LEDs e Resistores**:
-- Conecte um resistor de 330 ohms a cada LED (verde, laranja e vermelho).
-- Conecte um jumper do GND da ESP32 a cada LED através do resistor.
-- Conecte os LEDs aos pinos da ESP32: 
-   - LED Verde: Conecte ao pino 12 da ESP32. 
-   - LED Laranja: Conecte ao pino 14 da ESP32. 
-   - LED Vermelho: Conecte ao pino 27 da ESP32.
-### **Potenciômetro**:
-  - Conecte a porta VCC do potenciômetro ao pino de 5V da ESP32.
-  - Conecte a porta GND do potenciômetro ao GND da ESP32.
-  - Conecte a porta SIG do potenciômetro ao pino VP (36) da ESP32.
-    
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/circuito.png?raw=true).
+- **Junte a Placa Arduino Uno à protoboard para facilitar as conexões.**
+- **Sensor de Força**
+1. Um terminal do sensor de força está conectado ao pino A1 do Arduino.
+2. No mesmo ponto de conexão do sensor de força na protoboard, há um resistor de 220 Ω que vai para o barramento positivo (+), que por sua vez é conectado ao pino de 5V do Arduino.
+3. O outro terminal do sensor de força está conectado ao barramento negativo (-) da protoboard usando dois jumpers, e esse barramento negativo está conectado ao GND do Arduino.
+- **Sensor de Distância (Ultrassônico)**
+1. Conecte o pino VCC do sensor de distância ao pino de 5V do Arduino.
+2. Conecte o pino GND do sensor ao GND do Arduino.
+3. Conecte o pino Trig a um pino digital, por exemplo, o pino 3.
+4. Conecte o pino Echo a um pino digital, por exemplo, o pino 2.
+- **Display LCD 16x2 (I2C)** 
+1. Conecte o pino VCC do módulo I2C ao pino de 5V do Arduino.
+2. Conecte o pino GND ao GND do Arduino.
+3. Conecte o pino SDA ao pino A4 do Arduino.
+4. Conecte o pino SCL ao pino A5 do Arduino.
+- **LEDs de Cores Diferentes**
+1. Conecte o ânodo de cada LED a pinos digitais diferentes no Arduino (por exemplo, 8, 9, 10, 11, e 12).
+2. Conecte o cátodo de cada LED a um resistor de 220 Ω, e então conecte o outro terminal do resistor ao GND.
+- **Jumpers**:
+1. Use jumpers para conectar o barramento GND da protoboard ao GND do Arduino e garantir todas as conexões corretamente.
+## Circuito
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/circuito1.png?raw=true)
 
 ---
 
 ## Programação
 
-### Passo 1: Configuração dos Sensores e Atuadores
+### Passo 1: Configuração do Sistema
 
-Nesta parte do código, os pinos utilizados para os LEDs e o sensor de temperatura são definidos. Em seguida, os pinos dos LEDs são configurados como saídas e a comunicação serial é iniciada para permitir a depuração e monitoramento dos dados.
+Inicialize o display LCD com o endereço correto e defina os pinos de entrada e saída no Arduino. Isso inclui configurar o sensor de força, o sensor de distância e os LEDs. Certifique-se de que a comunicação serial esteja pronta para a exibição de dados no monitor serial.
 
 
 
 ```cpp
-#include <Arduino.h>
+#include <Wire.h>
+#include <Adafruit_LiquidCrystal.h>
 
-// Definindo os pinos
-const int tempPin = 36; // Pino analógico VP conectado ao sensor de temperatura (GPI36, ADC1_CH0)
-const int ledVerde = 12; // LED verde no pino 12
-const int ledAmarelo = 14; // LED amarelo no pino 14
-const int ledVermelho = 27; // LED vermelho no pino 27
+long duracao;
+double sensorDeForca = A1;
+double altura1;
+double altura2;
+double pesoNewton = 0; // O sensor de força mede em Newtons
+double pesoKG = 0;
+double IMC1;
+double IMC2;
+
+// Inicializa o LCD com o endereço 0x20
+Adafruit_LiquidCrystal lcd_1(0x20);
 
 void setup() {
-  // Configuração dos pinos como saída
-  pinMode(ledVerde, OUTPUT);
-  pinMode(ledAmarelo, OUTPUT);
-  pinMode(ledVermelho, OUTPUT);
-  
-  // Inicializando a comunicação serial
+  lcd_1.begin(16, 2);  // Configura o LCD para 16 colunas e 2 linhas
+  lcd_1.setBacklight(1);  // Liga a luz de fundo do LCD
+
+  pinMode(sensorDeForca, INPUT);
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(2, INPUT);
   Serial.begin(9600);
 }
 
+
 ```
-- Definição de Pinos: Os pinos do sensor de temperatura e dos LEDs são definidos.
-- Configuração Inicial: Os pinos dos LEDs são configurados como saída e a comunicação serial é iniciada para depuração.
 
+### Passo 2: Processamento e Lógica de Cálculos e Exibição
 
-### Passo 2: Processamento e Lógica de Alerta
-
-Nesta seção, o código lê o valor do sensor de temperatura e o converte para uma leitura em Celsius. A voltagem e a temperatura são exibidas no monitor serial para depuração. Dependendo da temperatura medida, os LEDs são acionados para indicar se a temperatura está baixa, média ou alta. Um atraso de 1 segundo é adicionado para controlar a frequência das leituras e evitar sobrecarga.
+No loop principal, colete dados do sensor de distância para calcular a altura em metros e do sensor de força para estimar o peso em quilogramas. Em seguida, calcule o IMC usando os valores de altura e peso. Os resultados são exibidos no monitor serial e no display LCD.
 
 ```cpp
 void loop() {
-  // Lendo o valor do sensor de temperatura
-  int valorSensor = analogRead(tempPin);
-  
-  // Convertendo o valor lido para a temperatura em Celsius
-  float voltagem = (valorSensor / 4095.0) * 3.3; // ESP32 tem resolução de 12 bits e tensão de referência de 3.3V
-  
-  // Incluindo uma verificação da voltagem para depuração
-  Serial.print("Voltagem lida: ");
-  Serial.print(voltagem);
-  Serial.println(" V");
+  // Fórmulas de Distância
+  digitalWrite(3, LOW);
+  delayMicroseconds(2);
 
-  // Convertendo a voltagem para temperatura
-  float temperatura = voltagem * 100.0; // Assumindo sensor LM35 (10mV por grau Celsius)
+  digitalWrite(3, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(3, LOW);
 
-  // Exibindo a temperatura no monitor serial
-  Serial.print("Temperatura: ");
-  Serial.print(temperatura);
-  Serial.println(" *C");
+  duracao = pulseIn(2, HIGH);
 
-  // Acendendo os LEDs com base na temperatura
-  if (temperatura <= 20) {
-    // Temperatura baixa, acende o LED verde
-    digitalWrite(ledVerde, HIGH);
-    digitalWrite(ledAmarelo, LOW);
-    digitalWrite(ledVermelho, LOW);
-  } else if (temperatura > 20 e temperatura <= 25) {
-    // Temperatura média, acende o LED amarelo
-    digitalWrite(ledVerde, LOW);
-    digitalWrite(ledAmarelo, HIGH);
-    digitalWrite(ledVermelho, LOW);
-  } else {
-    // Temperatura alta, acende o LED vermelho
-    digitalWrite(ledVerde, LOW);
-    digitalWrite(ledAmarelo, LOW);
-    digitalWrite(ledVermelho, HIGH);
+  altura1 = duracao * 0.034 / 2;
+  altura2 = altura1 / 100;  // Converte de CM para M
+
+  // Fórmulas de Peso
+  pesoNewton = analogRead(sensorDeForca);
+  pesoKG = pesoNewton * pesoNewton * pesoNewton * pesoNewton * pesoNewton * pesoNewton / 10000000000000000;
+
+  // Imprimir os valores no Monitor Serial
+  Serial.print("Altura: ");
+  Serial.print(altura2);
+  Serial.println(" m");
+
+  Serial.print("Peso: ");
+  Serial.print(pesoKG);
+  Serial.println(" kg");
+
+  IMC1 = altura2 * altura2;
+  IMC2 = pesoKG / IMC1;
+
+  Serial.print("IMC: ");
+  Serial.println(IMC2);
+
+  // Imprimir os valores no LCD
+  lcd_1.clear();  // Limpa o LCD antes de imprimir as novas informações
+  lcd_1.setCursor(0, 0);  // Posiciona o cursor na primeira linha, primeira coluna
+  lcd_1.print("Altura: ");
+  lcd_1.print(altura2);
+  lcd_1.print(" m");
+
+  lcd_1.setCursor(0, 1);  // Posiciona o cursor na segunda linha, primeira coluna
+  lcd_1.print("Peso: ");
+  lcd_1.print(pesoKG);
+  lcd_1.print(" kg");
+
+  delay(2000);  // Aguarda 2 segundos antes de atualizar a tela
+
+  // Categorizar o IMC e acionar os LEDs correspondentes
+  if (IMC2 < 18.5) {
+    Serial.println("ABAIXO DO PESO");
+    digitalWrite(12, HIGH);
+    delay(200);
+    digitalWrite(12, LOW);
+  } else if (IMC2 > 18.5 && IMC2 < 25) {
+    Serial.println("PESO NORMAL");
+    digitalWrite(11, HIGH);
+    delay(200);
+    digitalWrite(11, LOW);
+  } else if (IMC2 >= 25 && IMC2 < 30) {
+    Serial.println("SOBREPESO");
+    digitalWrite(10, HIGH);
+    delay(200);
+    digitalWrite(10, LOW);
+  } else if (IMC2 >= 30 && IMC2 < 35) {
+    Serial.println("OBESIDADE MODERADA");
+    digitalWrite(9, HIGH);
+    delay(200);
+    digitalWrite(9, LOW);
+  } else if (IMC2 >= 35) {
+    Serial.println("OBESIDADE SEVERA");
+    digitalWrite(8, HIGH);
+    delay(200);
+    digitalWrite(8, LOW);
   }
+}
 
-  // Atraso de 1 segundo
-  delay(1000);
 }
 ```
-- Leitura do Sensor: O valor do sensor de temperatura é lido e convertido para uma medida utilizável em Celsius.
-- Depuração: A voltagem e a temperatura são impressas no monitor serial para verificação.
-- Lógica de Alerta: Os LEDs são acionados com base na faixa de temperatura medida.
-- Atraso: Um atraso de 1 segundo é adicionado para controlar a frequência das leituras.
-
 ---
 
 ## Teste e Validação
 
-Descreva os testes para validar cada parte do projeto:
 
-- **Testando Sensores**: Gire o potenciômetro e observe as leituras de voltagem e temperatura no monitor serial. As leituras devem variar de 0V a 3.3V e refletir a temperatura correta.
--  **Validação dos Atuadores**: Ajuste o potenciômetro para simular diferentes temperaturas e observe os LEDs.
--  **Monitoramento em Tempo Real**: Simule temperaturas girando o potenciômetro e monitore os LEDs e o monitor serial. O sistema deve responder rapidamente às mudanças de temperatura e os LEDs devem refletir corretamente as faixas de temperatura.
-    - Exemplo:
-      
-      ![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/terminal.png?raw=true)
+
+- **Testar o Sensor de Distância:** Verifique se o sensor de distância está medindo corretamente a altura. Utilize um objeto de referência com altura conhecida e confirme se o valor calculado corresponde ao esperado, tanto no monitor serial quanto no LCD.
+
+- **Testar o Sensor de Força:** Aplique diferentes pesos conhecidos ao sensor de força e verifique se os valores de peso em quilogramas são calculados corretamente. Compare as leituras no monitor serial com os valores reais para validar a precisão.
+
+- **Cálculo de IMC:** Valide o cálculo do IMC com exemplos de altura e peso conhecidos. Certifique-se de que o valor exibido esteja correto e dentro do intervalo esperado.
+
+- **Funcionamento dos LEDs:** Teste cada LED individualmente para garantir que eles acendem corretamente com base na categoria de IMC. Simule diferentes IMCs e observe se o LED correspondente é ativado.
+
+- **Display LCD:** Verifique se as informações de altura, peso e IMC são exibidas corretamente no LCD. Garanta que o LCD limpa as informações antigas e atualiza os dados em tempo real.
+
+- **Monitor Serial:** Confirme que todos os dados coletados e os cálculos do IMC estão sendo impressos corretamente no monitor serial para facilitar o monitoramento e a depuração.
+
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/T2_Circuito.png?raw=true)
+![imagem alt](https://github.com/user-attachments/assets/ac8a35f3-1d7b-4fec-9556-b28ce9914286)
+
 ---
 
 ## Expansões e Melhorias
 
 Sugestões para melhorar o projeto, como:
 
-- Integração de um Display LCD: Use um display para mostrar a temperatura e outras informações em tempo real.
-- Buzzer para Alerta Sonoro: Adicione um buzzer para emitir alertas sonoros em casos de temperatura alta ou baixa, complementando os sinais visuais dos LEDs.
-  - Display + Buzzer:
-    
-  ![imagm alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/melhorias.png?raw=true)
+- **Comunicação com a Nuvem**: Integrar o projeto com uma plataforma para armazenar as métricas captadas pelos sensores em tempo real. Isso permite o acesso remoto aos dados, a análise de históricos de IMC, e o monitoramento contínuo das condições do usuário.
+- **Implementar Alarmes Sonoros:** Adicionar um buzzer que emita sons de alerta para casos de IMC fora da faixa saudável, aumentando a usabilidade em ambientes com menos visibilidade.
 ---
 
 ## Referências
 
-- Link simulação: https://wokwi.com/projects/414635274333556737
-- Documentação: https://docs.wokwi.com/pt-BR/
-- Conhecendo o simulador: https://www.youtube.com/watch?v=ZHz9nBDnFhU&t=87s
+- Link simulação: https://www.tinkercad.com/things/hezlOPXRZWe-sistema-de-monitoramento-de-imc-com-sensores-de-peso-e-altura?sharecode=aCFzLU7Zibd8mRkQ5pw7I1kYj_9DKlnJC2mFIFggUw4
+- ArduinoIDE: https://www.arduino.cc/
+- Tinkercad: https://www.tinkercad.com/
 
 ---
-
-Caso os LEDs não acendam, é importante revisar as conexões e garantir que os LEDs estão corretamente polarizados. Se a temperatura exibida estiver incorreta, verifique a conexão do potenciômetro ao pino VP (36). Caso os LEDs não respondam às mudanças de temperatura, ajuste as faixas no código e o tempo de delay para otimizar a leitura e resposta do sistema.
+Este sistema oferece uma solução simples e eficaz para monitoramento da saúde física, e pode ser expandido para incluir recursos como armazenamento de dados, alarmes e integração com outros sistemas de saúde
