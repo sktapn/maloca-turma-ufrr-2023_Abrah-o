@@ -132,12 +132,12 @@ void loop() {
   Serial.println(" *C");
 
   // Acendendo os LEDs com base na temperatura
-  if (temperatura <= 36) {
+  if (temperatura <= 20) {
     // Temperatura baixa, acende o LED verde
     digitalWrite(ledVerde, HIGH);
     digitalWrite(ledAmarelo, LOW);
     digitalWrite(ledVermelho, LOW);
-  } else if (temperatura >= 37 e temperatura <= 39) {
+  } else if (temperatura > 20 e temperatura <= 25) {
     // Temperatura média, acende o LED amarelo
     digitalWrite(ledVerde, LOW);
     digitalWrite(ledAmarelo, HIGH);
