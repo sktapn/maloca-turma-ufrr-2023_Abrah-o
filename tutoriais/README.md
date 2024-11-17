@@ -1,6 +1,6 @@
-# Sistema de Monitoramento de IMC com Sensores de Peso e Altura
+# Sistema de Monitoramento de Ar com Alerta e Controle
 
-**Descrição:** Neste projeto, vamos criar um sistema de monitoramento de saúde utilizando um sensor de força para medir o peso de um indivíduo e um sensor de distância para calcular sua altura, ambos conectados a um microcontrolador. O sistema também calculará o Índice de Massa Corporal (IMC) com base nos valores de peso e altura, e exibirá as informações no display LCD. Além disso, o sistema indicará a faixa do IMC através de LEDs, ajudando na avaliação de condições como baixo peso, sobrepeso e obesidade. Esse projeto pode ser útil em clínicas, academias ou até mesmo para uso pessoal, promovendo o acompanhamento da saúde de forma prática e visual.
+**Descrição:** O Sistema de Monitoramento de Ar com Alerta e Controle para Ambientes de Saúde foi desenvolvido com o objetivo de proporcionar um ambiente seguro e saudável para pessoas que se encontram em situações de risco devido a problemas respiratórios, como pacientes hospitalares, idosos, crianças ou indivíduos com condições pré-existentes, como asma ou doenças pulmonares crônicas. Este sistema utiliza tecnologia de sensores para monitorar a presença de gases nocivos no ambiente e adotar medidas corretivas automaticamente quando necessário.
 
 ---
 
@@ -19,7 +19,7 @@
 
 ## Introdução
 
-Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de Massa Corporal (IMC) utilizando sensores de peso e altura. O sistema exibe os resultados em um display LCD e utiliza LEDs para indicar diferentes faixas de IMC, como baixo peso, peso normal e obesidade. A proposta é fornecer uma ferramenta prática e acessível para o acompanhamento da saúde física.
+A principal função deste projeto é monitorar a qualidade do ar em tempo real e alertar os ocupantes do ambiente sobre a presença de gases nocivos, proporcionando uma resposta rápida para mitigar riscos à saúde. Quando detectado um nível elevado de gases perigosos, o sistema aciona um alarme sonoro, exibe mensagens de alerta no display LCD e ativa um mecanismo automático para a abertura de janelas ou ativação de sistemas de ventilação, garantindo assim a renovação do ar e a melhoria das condições respiratórias no ambiente
 
 ---
 
@@ -28,16 +28,16 @@ Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de 
 ### Hardware
 
 - **Placa**: Arduino Uno.
-- **Sensores**: Sensor de força (para medir o peso) e sensor de distância (ultrassônico) para medir a altura.
-- **Atuadores**: 5 LEDs de cores diferentes (para indicar diferentes faixas de IMC).
+- **Sensores**: Sensor de Gás (MQ-2)
+- **Atuadores**: Buzzer Piezoelétrico, LED e Servo Motor.
 - **Display**: LCD 16x2 com interface I2C.
-- **Outros componentes**: Protoboard, 6 resistores de 220 Ω, jumpers.
+- **Outros componentes**: Protoboard, Resistores, Jumpers e Fios
 
 ### Software
 
-- **Linguagens**: C/C++ para programação do Arduino..
+- **Linguagens**: C/C++ para programação do Arduino.
 - **IDE**: Arduino IDE e Tinkercad.
-- **Bibliotecas**: Wire.h e Adafruit_LiquidCrystal.h para controle do LCD e comunicação com os sensores.
+- **Bibliotecas**: Servo.h e Adafruit_LiquidCrystal.h para controle do LCD e comunicação com os sensores.
 
 ---
 
@@ -46,43 +46,40 @@ Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de 
 ### Passo 1: Instalação do Software
  
 - **Arduino IDE:** Faça o download e instale o Arduino IDE acessando o site https://www.arduino.cc/en/software.
-
 ![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/download%20arduino.png?raw=true)
 
 ### Passo 2: Configuração das Placas
 - **Configuração no Arduino:**
-1. Conecte a placa Arduino ao computador utilizando o cabo USB;
-2. Na IDE do Arduino, clique em "Select other board and port" (Selecionar outra placa e porta);
-3. Escolha a opção "Arduino Mega or Mega 2560";
-4. Por último, selecione a porta correta na IDE do Arduino.
-     
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/arduino.png?raw=true)
+  1. Conecte a placa Arduino ao computador utilizando o cabo USB;
+  2. Na IDE do Arduino, clique em "Select other board and port" (Selecionar outra placa e porta);
+  3. Escolha a opção "Arduino Mega or Mega 2560";
+  4. Por último, selecione a porta correta na IDE do Arduino. 
+  ![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/arduino.png?raw=true)
 ---
 
 ## Montagem do Circuito
 
 - **Junte a Placa Arduino Uno à protoboard para facilitar as conexões.**
-- **Sensor de Força**
-1. Um terminal do sensor de força está conectado ao pino A1 do Arduino.
-2. No mesmo ponto de conexão do sensor de força na protoboard, há um resistor de 220 Ω que vai para o barramento positivo (+), que por sua vez é conectado ao pino de 5V do Arduino.
-3. O outro terminal do sensor de força está conectado ao barramento negativo (-) da protoboard usando dois jumpers, e esse barramento negativo está conectado ao GND do Arduino.
-- **Sensor de Distância (Ultrassônico)**
-1. Conecte o pino VCC do sensor de distância ao pino de 5V do Arduino.
-2. Conecte o pino GND do sensor ao GND do Arduino.
-3. Conecte o pino Trig a um pino digital, por exemplo, o pino 3.
-4. Conecte o pino Echo a um pino digital, por exemplo, o pino 2.
-- **Display LCD 16x2 (I2C)** 
+- **Servo MoTOR**
+1. x
+2. x.
+3. x
+- **Sensor de Gás **
+1. x
+2. x
+3. x
+4. x
+- **Display LCD 16x2 (I2C)**
 1. Conecte o pino VCC do módulo I2C ao pino de 5V do Arduino.
 2. Conecte o pino GND ao GND do Arduino.
 3. Conecte o pino SDA ao pino A4 do Arduino.
 4. Conecte o pino SCL ao pino A5 do Arduino.
-- **LEDs de Cores Diferentes**
-1. Conecte o ânodo de cada LED a pinos digitais diferentes no Arduino (por exemplo, 8, 9, 10, 11, e 12).
-2. Conecte o cátodo de cada LED a um resistor de 220 Ω, e então conecte o outro terminal do resistor ao GND.
+- **LEDs**
+1. X.
+2. X.
 - **Jumpers**:
-1. Use jumpers para conectar o barramento GND da protoboard ao GND do Arduino e garantir todas as conexões corretamente.
-## Circuito
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/circuito1.png?raw=true)
+1. X.
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-3/tutoriais/T3_1.png?raw=true)
 
 ---
 
@@ -90,163 +87,139 @@ Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de 
 
 ### Passo 1: Configuração do Sistema
 
-Inicialize o display LCD com o endereço correto e defina os pinos de entrada e saída no Arduino. Isso inclui configurar o sensor de força, o sensor de distância e os LEDs. Certifique-se de que a comunicação serial esteja pronta para a exibição de dados no monitor serial.
+O sistema inicializa o LCD, servo motor, LED e buzzer. O LCD exibe uma mensagem inicial "Sistema Maloca" enquanto o servo motor é configurado para iniciar com a porta/janela fechada (0 graus). O sensor de gás é configurado para ler os níveis de concentração de gás e o pino do buzzer e LED são configurados para alerta.
 
 
 
 ```cpp
-#include <Wire.h>
 #include <Adafruit_LiquidCrystal.h>
+#include <Servo.h>  // Inclui a biblioteca para o servo motor
 
-long duracao;
-double sensorDeForca = A1;
-double altura1;
-double altura2;
-double pesoNewton = 0; // O sensor de força mede em Newtons
-double pesoKG = 0;
-double IMC1;
-double IMC2;
+// Definindo pinos para o sensor de gás, LED, buzzer e servo
+const int gas_input = A0;
+const int led = 6;
+const int buzzer = 12;
+int gas = 0;
 
-// Inicializa o LCD com o endereço 0x20
-Adafruit_LiquidCrystal lcd_1(0x20);
+// Configuração do Servo
+Servo servoMotor;  // Cria um objeto Servo
+const int servoPin = 3;  // Define o pino do servo
+
+// Configuração do LCD
+Adafruit_LiquidCrystal lcd_1(0x20);  // Substitua por 0x27 se necessário
 
 void setup() {
-  lcd_1.begin(16, 2);  // Configura o LCD para 16 colunas e 2 linhas
-  lcd_1.setBacklight(1);  // Liga a luz de fundo do LCD
+  // Configurações de pinos
+  pinMode(led, OUTPUT);
+  pinMode(buzzer, OUTPUT);
 
-  pinMode(sensorDeForca, INPUT);
-  pinMode(12, OUTPUT);
-  pinMode(11, OUTPUT);
-  pinMode(10, OUTPUT);
-  pinMode(9, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(2, INPUT);
+  // Inicializando o Serial Monitor, LCD e Servo
   Serial.begin(9600);
-}
+  lcd_1.begin(16, 2);
+  lcd_1.print("Sistema Maloca");  // Mensagem inicial
+  delay(2000);  // Espera 2 segundos
+  lcd_1.clear();
 
+  // Configura o servo
+  servoMotor.attach(servoPin);
+  servoMotor.write(0);  // Inicialmente a porta/janela está fechada
+}
 
 ```
 
 ### Passo 2: Processamento e Lógica de Cálculos e Exibição
 
-No loop principal, colete dados do sensor de distância para calcular a altura em metros e do sensor de força para estimar o peso em quilogramas. Em seguida, calcule o IMC usando os valores de altura e peso. Os resultados são exibidos no monitor serial e no display LCD.
+O sistema lê continuamente o valor do sensor de gás. Se o nível de gás for superior a 150, o LCD exibe "ATENÇÃO" e "Portas e janelas abertas", e o buzzer emite um som de alerta enquanto o LED acende. O servo motor é acionado para abrir a porta/janela. Caso o nível de gás esteja seguro, o sistema desliga o buzzer, apaga o LED e exibe "Nível Seguro" no LCD, fechando a porta/janela novamente.
 
 ```cpp
 void loop() {
-  // Fórmulas de Distância
-  digitalWrite(3, LOW);
-  delayMicroseconds(2);
+  // Leitura do valor do sensor de gás
+  gas = analogRead(gas_input);
 
-  digitalWrite(3, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(3, LOW);
+  // Exibindo o valor do gás no Serial Monitor
+  Serial.print("Gas Level: ");
+  Serial.println(gas);
 
-  duracao = pulseIn(2, HIGH);
+  // Verificando se o valor do gás excede o limite crítico (150)
+  if (gas > 150) {
+    // Exibindo a mensagem "ATENCAO" no LCD
+    lcd_1.clear();
+    lcd_1.setCursor(4, 0);  // Coluna 4, Linha 0 para centralizar "ATENCAO"
+    lcd_1.print("ATENCAO");
+    delay(2000);  // Espera 2 segundos
 
-  altura1 = duracao * 0.034 / 2;
-  altura2 = altura1 / 100;  // Converte de CM para M
+    // Exibindo a mensagem "Portas e janelas abertas" no LCD
+    lcd_1.clear();
+    lcd_1.setCursor(0, 0);  // Coluna 0, Linha 0
+    lcd_1.print("Portas e janelas");
+    lcd_1.setCursor(3, 1);  // Coluna 3, Linha 1
+    lcd_1.print("abertas!");
+    delay(2000);  // Espera 2 segundos
 
-  // Fórmulas de Peso
-  pesoNewton = analogRead(sensorDeForca);
-  pesoKG = pesoNewton * pesoNewton * pesoNewton * pesoNewton * pesoNewton * pesoNewton / 10000000000000000;
+    // Exibindo as mensagens no Serial Monitor
+    Serial.println("ATENCAO: Nivel Critico!");
+    Serial.println("Portas e janelas abertas!");
 
-  // Imprimir os valores no Monitor Serial
-  Serial.print("Altura: ");
-  Serial.print(altura2);
-  Serial.println(" m");
+    // Acionando o buzzer e o LED
+    tone(buzzer, 1000);  // Frequência de 1000 Hz
+    digitalWrite(led, HIGH);
 
-  Serial.print("Peso: ");
-  Serial.print(pesoKG);
-  Serial.println(" kg");
+    // Abrindo a porta/janela
+    servoMotor.write(90);  // Gira o servo para 90 graus para abrir
+  } else {
+    // Se o nível de gás estiver seguro, desligar buzzer e LED
+    noTone(buzzer);
+    digitalWrite(led, LOW);
 
-  IMC1 = altura2 * altura2;
-  IMC2 = pesoKG / IMC1;
+    // Limpar o LCD e centralizar a mensagem "Nivel Seguro"
+    lcd_1.clear();
+    lcd_1.setCursor(3, 0);  // Coluna 3, Linha 0 para centralizar "Nivel Seguro"
+    lcd_1.print("Nivel Seguro");
 
-  Serial.print("IMC: ");
-  Serial.println(IMC2);
-
-  // Imprimir os valores no LCD
-  lcd_1.clear();  // Limpa o LCD antes de imprimir as novas informações
-  lcd_1.setCursor(0, 0);  // Posiciona o cursor na primeira linha, primeira coluna
-  lcd_1.print("Altura: ");
-  lcd_1.print(altura2);
-  lcd_1.print(" m");
-
-  lcd_1.setCursor(0, 1);  // Posiciona o cursor na segunda linha, primeira coluna
-  lcd_1.print("Peso: ");
-  lcd_1.print(pesoKG);
-  lcd_1.print(" kg");
-
-  delay(2000);  // Aguarda 2 segundos antes de atualizar a tela
-
-  // Categorizar o IMC e acionar os LEDs correspondentes
-  if (IMC2 < 18.5) {
-    Serial.println("ABAIXO DO PESO");
-    digitalWrite(12, HIGH);
-    delay(200);
-    digitalWrite(12, LOW);
-  } else if (IMC2 > 18.5 && IMC2 < 25) {
-    Serial.println("PESO NORMAL");
-    digitalWrite(11, HIGH);
-    delay(200);
-    digitalWrite(11, LOW);
-  } else if (IMC2 >= 25 && IMC2 < 30) {
-    Serial.println("SOBREPESO");
-    digitalWrite(10, HIGH);
-    delay(200);
-    digitalWrite(10, LOW);
-  } else if (IMC2 >= 30 && IMC2 < 35) {
-    Serial.println("OBESIDADE MODERADA");
-    digitalWrite(9, HIGH);
-    delay(200);
-    digitalWrite(9, LOW);
-  } else if (IMC2 >= 35) {
-    Serial.println("OBESIDADE SEVERA");
-    digitalWrite(8, HIGH);
-    delay(200);
-    digitalWrite(8, LOW);
+    // Fechando a porta/janela
+    servoMotor.write(0);  // Retorna o servo para 0 graus para fechar
   }
+
+  // Pequeno atraso para a próxima leitura
+  delay(500);
 }
 
-}
 ```
 ---
 
 ## Teste e Validação
 
 
+- **Testar o Sensor de Gás:** Exponha o sensor de gás a uma concentração conhecida de gás ou fumaça e verifique se o valor lido no monitor serial corresponde ao esperado. Certifique-se de que o valor de leitura (variando de 0 a 1023) reflete corretamente a concentração de gás no ambiente.
 
-- **Testar o Sensor de Distância:** Verifique se o sensor de distância está medindo corretamente a altura. Utilize um objeto de referência com altura conhecida e confirme se o valor calculado corresponde ao esperado, tanto no monitor serial quanto no LCD.
+- **Testar o Funcionamento do LCD:** Verifique se as mensagens "Sistema Maloca", "ATENÇÃO", "Portas e janelas abertas", e "Nível Seguro" estão sendo exibidas corretamente no LCD. Certifique-se de que as mensagens estão centralizadas conforme o esperado e são alteradas corretamente dependendo do nível de gás detectado.
 
-- **Testar o Sensor de Força:** Aplique diferentes pesos conhecidos ao sensor de força e verifique se os valores de peso em quilogramas são calculados corretamente. Compare as leituras no monitor serial com os valores reais para validar a precisão.
+- **Testar o Buzzer:** Aplique uma concentração de gás que faça o valor ultrapassar 150 e verifique se o buzzer emite o som corretamente. Verifique também se o buzzer desliga quando o nível de gás voltar ao seguro, após o sensor registrar um valor abaixo de 150.
 
-- **Cálculo de IMC:** Valide o cálculo do IMC com exemplos de altura e peso conhecidos. Certifique-se de que o valor exibido esteja correto e dentro do intervalo esperado.
+- **Testar o LED:** Quando o nível de gás atingir um valor crítico (acima de 150), o LED deve acender. Quando o nível de gás voltar a ser seguro (abaixo de 150), o LED deve apagar. Verifique se o LED responde adequadamente a essas mudanças.
 
-- **Funcionamento dos LEDs:** Teste cada LED individualmente para garantir que eles acendem corretamente com base na categoria de IMC. Simule diferentes IMCs e observe se o LED correspondente é ativado.
+- **Testar o Servo Motor:** Quando o nível de gás for crítico, o servo motor deve mover-se para 90 graus, simulando a abertura da porta/janela. Quando o nível de gás for seguro, o servo motor deve voltar para a posição inicial (0 graus), simulando o fechamento da porta/janela. Certifique-se de que o movimento do servo ocorre sem falhas.
 
-- **Display LCD:** Verifique se as informações de altura, peso e IMC são exibidas corretamente no LCD. Garanta que o LCD limpa as informações antigas e atualiza os dados em tempo real.
-
-- **Monitor Serial:** Confirme que todos os dados coletados e os cálculos do IMC estão sendo impressos corretamente no monitor serial para facilitar o monitoramento e a depuração.
-
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/T2_Circuito.png?raw=true)
-![imagem alt](https://github.com/user-attachments/assets/ac8a35f3-1d7b-4fec-9556-b28ce9914286)
-
+- **Monitor Serial:** Verifique se o valor do gás lido pelo sensor e as mensagens de alerta ("ATENÇÃO: Nível Crítico!" e "Portas e janelas abertas!") estão sendo impressos corretamente no monitor serial. Isso ajudará a monitorar o comportamento do sistema durante os testes.
 ---
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-3/tutoriais/T3_2.png?raw=true)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-3/tutoriais/T3_3.png?raw=true)
+![imagem alt](https://github.com/user-attachments/assets/a6b198ee-3a62-430d-827b-1efbe83df590)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-3/tutoriais/T3_Terminal.png?raw=true)
 
 ## Expansões e Melhorias
 
 Sugestões para melhorar o projeto, como:
 
-- **Comunicação com a Nuvem**: Integrar o projeto com uma plataforma para armazenar as métricas captadas pelos sensores em tempo real. Isso permite o acesso remoto aos dados, a análise de históricos de IMC, e o monitoramento contínuo das condições do usuário.
-- **Implementar Alarmes Sonoros:** Adicionar um buzzer que emita sons de alerta para casos de IMC fora da faixa saudável, aumentando a usabilidade em ambientes com menos visibilidade.
+- **Implementação de Alerta Remoto via Wi-Fi:** Integrar um módulo Wi-Fi como o ESP8266 ou ESP32 para enviar notificações de alerta (por exemplo, via e-mail ou aplicativo de mensagens) quando o nível de gás atingir um valor crítico. Isso permite que os responsáveis sejam notificados, mesmo que não estejam no local.
+- **Adicionar um Sensor de Temperatura e Umidade:** Incorporar um sensor de temperatura e umidade, como o DHT11 ou DHT22, para monitorar as condições ambientais do ambiente. Isso pode ser útil para alertar o usuário caso a temperatura ou umidade atinja valores fora do padrão, podendo contribuir para a segurança, especialmente em ambientes fechados.
 ---
 
 ## Referências
 
-- Link simulação: https://www.tinkercad.com/things/hezlOPXRZWe-sistema-de-monitoramento-de-imc-com-sensores-de-peso-e-altura?sharecode=aCFzLU7Zibd8mRkQ5pw7I1kYj_9DKlnJC2mFIFggUw4
+- Link simulação: https://www.tinkercad.com/things/i6KvDVZZO4X-tutorial-5?sharecode=ruv4A0o9XUV4-9le0fIHyow5g_I2eABiycRlFDVPEoIsharecode=aCFzLU7Zibd8mRkQ5pw7I1kYj_9DKlnJC2mFIFggUw4
 - ArduinoIDE: https://www.arduino.cc/
 - Tinkercad: https://www.tinkercad.com/
 
 ---
-Este sistema oferece uma solução simples e eficaz para monitoramento da saúde física, e pode ser expandido para incluir recursos como armazenamento de dados, alarmes e integração com outros sistemas de saúde
+
