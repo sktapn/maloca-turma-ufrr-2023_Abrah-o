@@ -47,7 +47,7 @@ Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de 
  
 - **Arduino IDE:** Faça o download e instale o Arduino IDE acessando o site https://www.arduino.cc/en/software.
 
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/download%20arduino.png?raw=true)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/Sistema%20de%20Monitoramento%20de%20IMC%20com%20Sensores%20de%20Peso%20e%20Altura/download%20arduino.png?raw=true)
 
 ### Passo 2: Configuração das Placas
 - **Configuração no Arduino:**
@@ -56,7 +56,7 @@ Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de 
 3. Escolha a opção "Arduino Mega or Mega 2560";
 4. Por último, selecione a porta correta na IDE do Arduino.
      
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/arduino.png?raw=true)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/Sistema%20de%20Monitoramento%20de%20IMC%20com%20Sensores%20de%20Peso%20e%20Altura/arduino.png?raw=true)
 ---
 
 ## Montagem do Circuito
@@ -82,7 +82,7 @@ Este projeto visa desenvolver um sistema para calcular e monitorar o Índice de 
 - **Jumpers**:
 1. Use jumpers para conectar o barramento GND da protoboard ao GND do Arduino e garantir todas as conexões corretamente.
 ## Circuito
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/circuito1.png?raw=true)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/Sistema%20de%20Monitoramento%20de%20IMC%20com%20Sensores%20de%20Peso%20e%20Altura/circuito1.png?raw=true)
 
 ---
 
@@ -229,8 +229,8 @@ void loop() {
 
 - **Monitor Serial:** Confirme que todos os dados coletados e os cálculos do IMC estão sendo impressos corretamente no monitor serial para facilitar o monitoramento e a depuração.
 
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/T2_Circuito.png?raw=true)
-![imagem alt](https://github.com/user-attachments/assets/ac8a35f3-1d7b-4fec-9556-b28ce9914286)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/Sistema%20de%20Monitoramento%20de%20IMC%20com%20Sensores%20de%20Peso%20e%20Altura/T2_Circuito.png?raw=true)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/Tutorial-2/tutoriais/Sistema%20de%20Monitoramento%20de%20IMC%20com%20Sensores%20de%20Peso%20e%20Altura/T2_Terminal%20(2).png?raw=true)
 
 ---
 
