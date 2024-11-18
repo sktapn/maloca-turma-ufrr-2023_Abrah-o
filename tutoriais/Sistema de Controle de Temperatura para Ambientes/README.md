@@ -48,7 +48,7 @@ Este projeto visa monitorar a temperatura de quartos de pacientes, garantindo um
   1. Acesse o Wokwi no seu navegador https://wokwi.com/
   2. Crie um novo projeto e selecione a placa ESP32.
      
-![imagem alt]( https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/wokwi.png?raw=true)
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/Sistema%20de%20Controle%20de%20Temperatura%20para%20Ambientes/wokwi.png?raw=true)
 
 ### Passo 2: Configuração das Placas
 
@@ -70,7 +70,7 @@ Este projeto visa monitorar a temperatura de quartos de pacientes, garantindo um
   - Conecte a porta GND do potenciômetro ao GND da ESP32.
   - Conecte a porta SIG do potenciômetro ao pino VP (36) da ESP32.
     
-![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/circuito.png?raw=true).
+![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/Sistema%20de%20Controle%20de%20Temperatura%20para%20Ambientes/circuito.png?raw=true).
 
 ---
 
@@ -169,7 +169,7 @@ Descreva os testes para validar cada parte do projeto:
 -  **Monitoramento em Tempo Real**: Simule temperaturas girando o potenciômetro e monitore os LEDs e o monitor serial. O sistema deve responder rapidamente às mudanças de temperatura e os LEDs devem refletir corretamente as faixas de temperatura.
     - Exemplo:
       
-      ![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/terminal.png?raw=true)
+      ![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/Sistema%20de%20Controle%20de%20Temperatura%20para%20Ambientes/terminal.png?raw=true)
 ---
 
 ## Expansões e Melhorias
@@ -180,7 +180,7 @@ Sugestões para melhorar o projeto, como:
 - Buzzer para Alerta Sonoro: Adicione um buzzer para emitir alertas sonoros em casos de temperatura alta ou baixa, complementando os sinais visuais dos LEDs.
   - Display + Buzzer:
     
-  ![imagm alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/melhorias.png?raw=true)
+  ![imagm alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/main/tutoriais/Sistema%20de%20Controle%20de%20Temperatura%20para%20Ambientes/melhorias.png?raw=true)
 ---
 
 ## Referências
