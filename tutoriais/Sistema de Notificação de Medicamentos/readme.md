@@ -60,6 +60,7 @@ Este projeto visa criar um sistema de lembrete para medicamentos com um controle
 4. Por último, selecione a porta correta na IDE do Arduino.
    
 ![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/tutorial-4/tutoriais/Sistema%20de%20Notifica%C3%A7%C3%A3o%20de%20Medicamentos/arduino.png?raw=true)
+
 ---
 
 ## Montagem do Circuito
@@ -85,6 +86,7 @@ Este projeto visa criar um sistema de lembrete para medicamentos com um controle
 
 # Vista Esquemática
 ![imagem alt](https://github.com/sktapn/maloca-turma-ufrr-2023_Abrah-o/blob/tutorial-4/tutoriais/Sistema%20de%20Notifica%C3%A7%C3%A3o%20de%20Medicamentos/Esquema%20Notifica%C3%A7%C3%A3o.png?raw=true)
+
 ---
 
 ## Programação
@@ -94,6 +96,8 @@ A programação será dividida em várias partes para facilitar a compreensão e
 2. [Cadastro do Medicamento e Alarme](#cadastro-do-medicamento-e-alarme)
 3. [Controle de Alarme e Acesso ao Porta-Remédio](#controle-de-alarme-e-acesso-ao-porta-remédio)
 4. [Funções Auxiliares](#funções-auxiliares)
+
+> **Nota:** Você pode encontrar o código completo no link do simulador.
 
 ### Passo 1: Configuração do Sistema
 
@@ -208,6 +212,7 @@ void exibirNaSegundaLinha(String texto) {
 ```
 
 ---
+
 ## Teste e Validação
 
 - **Testando o Cadastro:** Certifique-se de que o nome do remédio e o tempo de alarme são corretamente inseridos e exibidos no LCD.
@@ -215,6 +220,7 @@ void exibirNaSegundaLinha(String texto) {
 - **Testando o Controle de Acesso:** Quando a senha correta for inserida, o sistema deve liberar o acesso ao "porta-remédio", acionando o servo motor para abrir o compartimento.
 
 ---
+
 ## Expansões e Melhorias
 
 - **Adicionar Conectividade:** Conectar o sistema a um smartphone via Bluetooth ou Wi-Fi para notificar o usuário.
@@ -222,6 +228,7 @@ void exibirNaSegundaLinha(String texto) {
 - **Interface de Usuário:** Melhorar a interface LCD para exibir informações adicionais como dosagem do medicamento.
 
 ---
+
 ## Referências
 
 - Link simulação: https://www.tinkercad.com/things/fXkFnPR8OHN-projeto?sharecode=I50j_Ad-6Bizm6An5BivC08k58G4rzCm1WprxK8c_7E
